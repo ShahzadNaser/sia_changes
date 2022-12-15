@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include sia_changes *.css
+recursive-include sia_changes *.csv
+recursive-include sia_changes *.html
+recursive-include sia_changes *.ico
+recursive-include sia_changes *.js
+recursive-include sia_changes *.json
+recursive-include sia_changes *.md
+recursive-include sia_changes *.png
+recursive-include sia_changes *.py
+recursive-include sia_changes *.svg
+recursive-include sia_changes *.txt
+recursive-exclude sia_changes *.pyc
