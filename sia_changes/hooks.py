@@ -102,13 +102,26 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Sales Order": {
+		"before_save": "sia_changes.events.sales_order.before_save"
+	},
+    "Delivery Note": {
+		"before_save": "sia_changes.events.delivery_note.before_save"
+	},
+    "Sales Invoice": {
+		"before_save": "sia_changes.events.sales_invoice.before_save"
+	},
+    "Purchase Order": {
+		"before_save": "sia_changes.events.purchase_order.before_save"
+	},
+    "Purchase Receipt": {
+		"before_save": "sia_changes.events.purchase_receipt.before_save"
+	},
+    "Purchase Invoice": {
+		"before_save": "sia_changes.events.purchase_invoice.before_save"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -139,9 +152,9 @@ app_license = "MIT"
 # Overriding Methods
 # ------------------------------
 #
-# override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "sia_changes.event.get_events"
-# }
+override_whitelisted_methods = {
+	"erpnext.controllers.queries.bom": "sia_changes.events.whitelisted.bom"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
