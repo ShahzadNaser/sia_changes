@@ -29,7 +29,7 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Production Plan" : "public/js/production_plan.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -94,9 +94,11 @@ app_license = "MIT"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"BOM": "sia_changes.classes.bom.CustomBOM",
+	"Work Order": "sia_changes.classes.work_order.CustomWorkOrder"
+ 
+}
 
 # Document Events
 # ---------------
@@ -153,7 +155,8 @@ doc_events = {
 # ------------------------------
 #
 override_whitelisted_methods = {
-	"erpnext.controllers.queries.bom": "sia_changes.events.whitelisted.bom"
+	"erpnext.controllers.queries.bom": "sia_changes.events.whitelisted.bom",
+	"frappe.desk.search.search_link": "sia_changes.events.search.search_link",
 }
 #
 # each overriding function accepts a `data` argument;
