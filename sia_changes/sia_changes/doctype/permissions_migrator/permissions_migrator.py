@@ -13,10 +13,10 @@ class PermissionsMigrator(Document):
 
 	def transfer_role_prem(self):
 		frappe.db.sql("""
-			INSERT INTO `tabDocPerm` select 
+			INSERT INTO `tabDocPerm` (`name`,`role`,`modified_by`,`owner`,`docstatus`,`parent`,`parentfield`,`parenttype`,`idx`,`permlevel`,`match`,`read`,`write`,`create`,`submit`,`cancel`,`delete`,`amend`,`report`,`export`,`import`,`share`,`print`,`email`,`if_owner`,`select`,`set_user_permissions`) 
+			SELECT 
 				concat(`tabDocPerm`.`name`,'{}') as name,
-				`tabDocPerm`.`creation`,
-				`tabDocPerm`.`modified`,
+				'{}' as role,
 				`tabDocPerm`.`modified_by`,
 				`tabDocPerm`.`owner`,
 				`tabDocPerm`.`docstatus`,
@@ -25,7 +25,6 @@ class PermissionsMigrator(Document):
 				`tabDocPerm`.`parenttype`,
 				`tabDocPerm`.`idx`,
 				`tabDocPerm`.`permlevel`,
-				'{}' as role,
 				`tabDocPerm`.`match`,
 				`tabDocPerm`.`read`,
 				`tabDocPerm`.`write`,
@@ -49,11 +48,10 @@ class PermissionsMigrator(Document):
         """.format(random_string(2), self.get("to_role"),self.get("from_role")))
 
 		frappe.db.sql("""
-			INSERT INTO `tabCustom DocPerm` select 
+			INSERT INTO `tabCustom DocPerm` (`name`,`role`,`modified_by`,`owner`,`docstatus`,`idx`,`parent`,`if_owner`,`permlevel`,`select`,`read`,`write`,`create`,`delete`,`submit`,`cancel`,`amend`,`report`,`export`,`import`,`set_user_permissions`,`share`,`print`,`email`,`_user_tags`,`_comments`,`_assign`,`_liked_by`) 
+   			SELECT 
 				concat(`tabCustom DocPerm`.`name`,'{}') as name,
 				'{}' as role,
-				`tabCustom DocPerm`.`creation`,
-				`tabCustom DocPerm`.`modified`,
 				`tabCustom DocPerm`.`modified_by`,
 				`tabCustom DocPerm`.`owner`,
 				`tabCustom DocPerm`.`docstatus`,
